@@ -5,6 +5,7 @@ class FilmPanelContent extends React.Component {
     super(props);
 
     this.characterNumberText = this.characterNumberText.bind(this);
+    this.noCharactersMessage = this.noCharactersMessage.bind(this);
   }
 
   characterNumberText(people) {

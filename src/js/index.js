@@ -12,7 +12,7 @@ import ReactDOM from "react-dom";
 
 // Service and helpers
 import studioGhibliService from "./services/studio-ghibli-service";
-import { createFilmPanelData } from "./helpers/studio-ghibli-helper";
+import { createFilmPanelData, createPersonPanelData } from "./helpers/studio-ghibli-helper";
 // owned imports
 import BlurbCard from "./components/blurb-card";
 import FullInfoPanel from "./components/full-info-panel/full-info-panel";
@@ -95,6 +95,26 @@ class App extends React.Component {
           infoPanelType: "film"
         });
       }
+    }
+
+    if(panelType === "people") {
+
+      // compose info panel data object from ID
+      // get person data from state
+      let personData = this.state.people.filter(person => {
+        return person.id === id;
+      });
+
+      // build up new data model for info panel data
+      if (personData.length > 0) {
+        let infoPanelData = createPersonPanelData(personData, this.state.films);
+
+        this.setState({
+          infoPanelData: infoPanelData,
+          infoPanelType: "person"
+        });
+      }
+
     }
     
   }

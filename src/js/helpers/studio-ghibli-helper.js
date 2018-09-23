@@ -38,3 +38,41 @@ export function createFilmPanelData(filmData, peopleState) {
 
   return infoPanelData;
 }
+
+
+export function createPersonPanelData(personData, filmsState) {
+
+  let personDataCopy = Object.assign({}, personData[0]);
+  let infoPanelData = {};
+  infoPanelData.name = personDataCopy.name;
+  infoPanelData.image_src = "https://via.placeholder.com/400x500";
+  infoPanelData.age = personDataCopy.age;
+  infoPanelData.gender = personDataCopy.gender;
+  infoPanelData.eye_color = personDataCopy.eye_color;
+  infoPanelData.hair_color = personDataCopy.hair_color;
+
+  if (personDataCopy.films.length > 0) {
+    let filmIds = [];
+
+    personDataCopy.films.forEach(film => {
+      let firstIndex = film.indexOf("/films/");
+      firstIndex = firstIndex + "/films/".length;
+      let lastIndex = parseInt(film.length);
+
+      if (film.substring(firstIndex, lastIndex)) {
+        filmIds.push(film.substring(firstIndex, lastIndex));
+      }
+    });
+
+    // filter people state to id array
+    let newFilms = filmsState.filter(film => {
+      return filmIds.some(function (id) {
+        return id === film.id;
+      });
+    });
+
+    infoPanelData.films = newFilms;
+  }
+  
+  return infoPanelData;
+}

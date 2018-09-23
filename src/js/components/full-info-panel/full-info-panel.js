@@ -1,6 +1,7 @@
 import React from "react";
 // Owned imports
 import FilmPanelContent from "./film-panel-content";
+import PersonPanelContent from "./person-panel-content";
 
 class FullInfoPanel extends React.Component {
   constructor(props) {
@@ -27,7 +28,11 @@ class FullInfoPanel extends React.Component {
   generatePanelContent(panelType) {
 
     if(panelType === "film") {
-      return <FilmPanelContent {...this.props} />
+      return <FilmPanelContent {...this.props} composeBlurbCards={this.props.composeBlurbCards}/>
+    }
+
+    if (panelType === "person") {
+      return <PersonPanelContent {...this.props} composeBlurbCards={this.props.composeBlurbCards}/>
     }
 
   }
