@@ -1,7 +1,7 @@
 {
   "name": "studio-ghibli-app",
   "version": "1.0.0",
-  "description": "",
+  "description": "( in development )Objective: create a web app to show and filter studio ghibli data using a rest api endpoint as a source of data",
   "main": "index.html",
   "scripts": {
     "start": "parcel index.html --open",
