@@ -6,13 +6,20 @@ class BlurbCard extends React.Component {
     // Render film cards
     // --------------------------------------------
 
+    
+
     if (this.props.cardType === "film") {
+      let imageStyle = {
+        backgroundImage: 'url(' + this.props.imageUrl + ')'
+      };
+
       return (
-        <div>
-          <p>{this.props.title}</p>
-          <p>{this.props.director}</p>
-          <p>{this.props.release_date}</p>
-          <p>{this.props.rt_score}</p>
+        <div className="blurb-card">
+          <div className="blurb-card__bg-image" style={imageStyle}></div>
+          <p className="blurb-card__text blurb-card__title">{this.props.title}</p>
+          <p className="blurb-card__text">{this.props.director}</p>
+          <p className="blurb-card__text">{this.props.release_date}</p>
+          <p className="blurb-card__text">{this.props.rt_score}</p>
           <button
             type="button"
             onClick={() => {

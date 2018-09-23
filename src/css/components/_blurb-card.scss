@@ -6,4 +6,43 @@
   display: grid;
   grid-template-columns: 25% 25% 25% 25%;
   grid-template-rows: 25% 25% 25% 25%;
+  grid-column-gap: 15px;
+  grid-row-gap: 15px;
+  padding-left: 0;
 }
+
+.blurb-card {
+  position: relative;
+  height: 330px;
+  text-align: center;
+}
+
+.blurb-card-list__item {
+  list-style: none;
+}
+
+.blurb-card__bg-image {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-size: cover;
+  z-index: -1;
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: transparent; // fallback
+    background-color: rgba(0, 0, 0, 0.25);
+  }
+}
+
+.blurb-card__text {
+  color: $color-white;
+}
+

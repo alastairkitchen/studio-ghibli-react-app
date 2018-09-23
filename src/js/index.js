@@ -63,11 +63,12 @@ class App extends React.Component {
     if (data) {
       const blurbCards = data.map(data => {
         return (
-          <li className="blurb-card">
+          <li className="blurb-card-list__item">
             <BlurbCard
               {...data}
               cardType={type}
               openPanel={this.openMoreInfoPanel}
+              imageUrl="https://uploads.codesandbox.io/uploads/user/f790870e-9884-46a2-860f-0a5ce3e050cc/p5vD-t1.png"
             />
           </li>
         );
@@ -134,7 +135,7 @@ class App extends React.Component {
           composeBlurbCards={this.composeBlurbCards}
         />
 
-        <article>
+        <article className="container">
           <header>
             <h2>Films</h2>
           </header>
@@ -142,7 +143,7 @@ class App extends React.Component {
           {this.composeBlurbCards(this.state.films, "film")}
         </article>
 
-        <article>
+        <article className="container">
           <header>
             <h2>Characters</h2>
           </header>
@@ -152,7 +153,7 @@ class App extends React.Component {
           {this.composeBlurbCards(this.state.people, "people")}
         </article>
 
-        <article>
+        {/*<article>
           <header>
             <h2>Locations</h2>
           </header>
@@ -160,7 +161,7 @@ class App extends React.Component {
             list of locations from studio ghibli films lorem ipsum dolar summet
           </p>
           {this.composeBlurbCards(this.state.locations, "location")}
-        </article>
+        </article>*/}
       </div>
     );
   }
