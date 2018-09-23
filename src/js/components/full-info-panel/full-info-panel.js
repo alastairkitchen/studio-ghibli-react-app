@@ -2,7 +2,7 @@ import React from "react";
 // Owned imports
 import FilmPanelContent from "./film-panel-content";
 
-class PanelWrapper extends React.Component {
+class FullInfoPanel extends React.Component {
   constructor(props) {
     super(props);
 
@@ -24,14 +24,21 @@ class PanelWrapper extends React.Component {
     }
   }
 
+  generatePanelContent(panelType) {
+
+    if(panelType === "film") {
+      return <FilmPanelContent {...this.props} />
+    }
+
+  }
+
   render() {
     return (
       <div>
-        <FilmPanelContent {...this.props} />
-        {/*<PannelContentPeople {...this.props} />*/}
+        {this.generatePanelContent(this.props.panelType)}
       </div>
     );
   }
 }
 
-export default PanelWrapper;
+export default FullInfoPanel;

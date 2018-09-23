@@ -16,7 +16,7 @@ class BlurbCard extends React.Component {
           <button
             type="button"
             onClick={() => {
-              this.props.openPanel(this.props.id);
+              this.props.openPanel(this.props.id, this.props.cardType);
             }}
           >
             More details

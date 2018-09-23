@@ -1,4 +1,4 @@
-export function createInfoPanelData(filmData, peopleState) {
+export function createFilmPanelData(filmData, peopleState) {
   let filmDataCopy = Object.assign({}, filmData[0]);
   let infoPanelData = {};
   infoPanelData.title = filmDataCopy.title;

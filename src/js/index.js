@@ -12,10 +12,10 @@ import ReactDOM from "react-dom";
 
 // Service and helpers
 import studioGhibliService from "./services/studio-ghibli-service";
-import { createInfoPanelData } from "./helpers/studio-ghibli-helper";
+import { createFilmPanelData } from "./helpers/studio-ghibli-helper";
 // owned imports
 import BlurbCard from "./components/blurb-card";
-import FullInfoPanel from "./components/full-info-panel/panel-wrapper";
+import FullInfoPanel from "./components/full-info-panel/full-info-panel";
 
 class App extends React.Component {
   constructor(props) {
@@ -26,6 +26,7 @@ class App extends React.Component {
       people: [],
       locations: [],
       infoPanelData: {},
+      infoPanelType: "",
       popupActive: false,
       dataLoaded: false
     };
@@ -42,7 +43,7 @@ class App extends React.Component {
   componentWillMount() {
     let service = new studioGhibliService();
 
-    //console.dir(createInfoPanelData());
+    //console.dir(createFilmPanelData());
     service.loadFilms().then(data => {
       this.setState({ ...data, dataLoaded: true });
     });
@@ -76,20 +77,26 @@ class App extends React.Component {
     }
   }
 
-  openMoreInfoPanel(id) {
-    // compose info panel data object from ID
-    // get film data from state
-    let filmData = this.state.films.filter(film => {
-      return film.id === id;
-    });
+  openMoreInfoPanel(id, panelType) {
 
-    // build up new data model for info panel data
-    if (filmData.length > 0) {
-      let infoPanelData = createInfoPanelData(filmData, this.state.people);
-      this.setState({
-        infoPanelData: infoPanelData
+
+    if (panelType === "film") {
+      // compose info panel data object from ID
+      // get film data from state
+      let filmData = this.state.films.filter(film => {
+        return film.id === id;
       });
+
+      // build up new data model for info panel data
+      if (filmData.length > 0) {
+        let infoPanelData = createFilmPanelData(filmData, this.state.people);
+        this.setState({
+          infoPanelData: infoPanelData,
+          infoPanelType: "film"
+        });
+      }
     }
+    
   }
 
   closeMoreInfoPanel() {}
@@ -103,6 +110,7 @@ class App extends React.Component {
       <div>
         <FullInfoPanel
           {...this.state.infoPanelData}
+          panelType={this.state.infoPanelType}
           composeBlurbCards={this.composeBlurbCards}
         />
 
@@ -139,12 +147,3 @@ class App extends React.Component {
 }
 
 ReactDOM.render(<App />, document.getElementById("app"));
-
-// document.getElementById("app").innerHTML = `
-// <h1>Hello Parcel!</h1>
-// <div>
-//   Look
-//   <a href="https://parceljs.org" target="_blank" rel="noopener noreferrer">here</a>
-//   for more info about Parcel.
-// </div>
-// `;
