@@ -24,11 +24,12 @@
 .blurb-card__bg-image {
   position: absolute;
   top: 0;
-  bottom: 0;
   left: 0;
   right: 0;
+  bottom: auto;
+  height: 150px;
   background-size: cover;
-  z-index: -1;
+  z-index: 1;
 
   &::before {
     content: "";
@@ -42,7 +43,15 @@
   }
 }
 
-.blurb-card__text {
-  color: $color-white;
+.blurb-card__content {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 180px;
+  background: #ffffff;
 }
 
+.blurb-card__text {
+  color: $color-black;
+}

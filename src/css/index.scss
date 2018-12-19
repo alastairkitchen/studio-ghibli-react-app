@@ -1,7 +1,9 @@
-
 // Base files
 @import "base/variables";
+@import "base/sass-mq";
+@import "base/typography";
 @import "base/layout";
 
 // Components
 @import "components/blurb-card";
+@import "components/content-section";
